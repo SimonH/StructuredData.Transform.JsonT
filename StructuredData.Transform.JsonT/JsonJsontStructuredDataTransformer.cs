@@ -39,34 +39,31 @@ namespace StructuredData.Transform.JsonT
             var pD = new PythonDictionary();
             foreach (var item in dictionary)
             {
-                var subDict = item.Value as IDictionary<string, object>;
-                var subList = item.Value as IList<object>;
-                if (subDict != null)
-                {
-                    pD.Add(item.Key, CreatePythonDictionary(subDict));
-                }
-                else if (subList != null)
-                {
-                    var list = new List();
-                    foreach (var listItem in subList)
-                    {
-                        if (listItem is IDictionary<string, object>)
-                        {
-                            list.Add(CreatePythonDictionary((IDictionary<string, object>) listItem));
-                        }
-                        else
-                        {
-                            list.Add(listItem);
-                        }
-                    }
-                    pD.Add(item.Key, list);
-                }
-                else
-                {
-                    pD.Add(item.Key, item.Value);
-                }
+                pD.Add(item.Key, CheckValue(item.Value));
             }
             return pD;
+        }
+
+        private List CreatePythonList(IList<object> list)
+        {
+            var pL = new List();
+            foreach(var item in list)
+            {
+                pL.Add(CheckValue(item));
+            }
+            return pL;
+        } 
+
+        private object CheckValue(object value)
+        {
+            var objects = value as IDictionary<string, object>;
+            if(objects != null)
+            {
+                return CreatePythonDictionary(objects);
+            }
+
+            var list = value as IList<object>;
+            return list != null ? CreatePythonList(list) : value;
         }
 
         public string Transform(string sourceData, string transformData)
