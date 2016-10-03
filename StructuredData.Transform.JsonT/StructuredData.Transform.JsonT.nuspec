@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>StructuredData.Transform.JsonT</id>
+    <version>0.9.0.0</version>
+    <authors>Simon Hanlon</authors>
+    <owners>Simon Hanlon</owners>
+    <description>structuredData.Transform implementation for json using JsonT</description>
+    <projectUrl>http://github.com/simonH/StructuredData.Transform.JsonT</projectUrl>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <tags>structured transport data transformation json JsonT</tags>
+    <language>en-us</language>
+    <dependencies>
+      <dependency id="IronPython" version="[2.7.5,3.0.0)" />
+      <dependency id="PythonLibs4CSharp" version="[2.7.5,3.0.0)" />
+      <dependency id="StructuredData.Transform" version="0.9.0.0" />
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="StructuredData.Transform.JsonT\bin\Release\StructuredData.Transform.JsonT.*" target="lib\net40" />
+  </files>
+</package>
